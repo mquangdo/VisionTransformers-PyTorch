@@ -52,13 +52,16 @@ class PatchEmbedding(nn.Module):
         out = rearrange(x, 'b c (nh ph) (nw pw) -> b (nh nw) (ph pw c)',
                       ph=self.patch_height,
                       pw=self.patch_width)
-        out = self.patch_embed(out)
+        out = self.patch_embed(out) #một lớp fc duy nhất thực hiện phép chiếu sang số chiều của transformer
+        
+        #Nếu đầu vào của bạn là [32, 10, 512] (batch_size=32, length=10, input_size=512) 
+        # và bạn có nn.Linear(512, 200), thì đầu ra sẽ là [32, 10, 200].
         
         # Add cls
         #'d -> b 1 d': Biến đổi (D_model,) thành (batch_size, 1, D_model). 
         # 1 ở giữa là chiều của số lượng token (chỉ có 1 CLS token).
         cls_tokens = repeat(self.cls_token, 'd -> b 1 d', b=batch_size)
-        out = torch.cat((cls_tokens, out), dim=1)
+        out = torch.cat((cls_tokens, out), dim=1) #nối dọc theo chiều(dim) thứ nhất (số token)
         
         # Add position embedding and do dropout
         out += self.pos_embed
