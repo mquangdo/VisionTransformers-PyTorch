@@ -26,7 +26,7 @@ class VIT(nn.Module):
         out = self.norm(out)
         
         # Compute logits
-        return self.fc_number(out[:, 0]) #0 for special cls token
+        return self.fc_number(out[:, 0]) #0 for special cls token, the first dimension (:) is the batch dimension, cls token is the first row
     
     
 a = torch.randn(3, 3, 3)  # Example input: batch size of 2, 3 channels, 224x224 image
