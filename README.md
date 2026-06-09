@@ -58,7 +58,7 @@ Each data entry should include keys such as:
 
 Default config is in:
 
-`/tmp/workspace/mquangdo/VisionTransformers-PyTorch/config/default.yaml`
+`config/default.yaml`
 
 It defines:
 
@@ -70,7 +70,7 @@ It defines:
 
 The training utility is implemented in:
 
-`/tmp/workspace/mquangdo/VisionTransformers-PyTorch/tools/train.py`
+`tools/train.py`
 
 Primary entrypoint function:
 
@@ -80,7 +80,7 @@ Primary entrypoint function:
 
 The inference utility is implemented in:
 
-`/tmp/workspace/mquangdo/VisionTransformers-PyTorch/tools/inference.py`
+`tools/inference.py`
 
 Primary entrypoint function:
 
